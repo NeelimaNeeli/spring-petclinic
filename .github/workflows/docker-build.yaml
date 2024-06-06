@@ -1,0 +1,18 @@
+name: docker-pipeline
+
+on: 
+  workflow_dispatch:
+
+jobs:
+
+  docker:
+    runs-on: self-hosted
+    steps:
+    - name: Checkout this repository
+      uses: actions/checkout@v2
+    - name: Verify Docker installation
+      run: |
+        docker --version
+    - name: Build Docker image
+      run: |
+        docker build -t spring-petclinic:v2 .
